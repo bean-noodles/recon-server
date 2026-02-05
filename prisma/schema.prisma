@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  moduleFormat    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+        
+model User {
+  id String @id @default(uuid())
+  token String
+  createAt DateTime @default(now())
+  apiKeys ApiKey[]  // User가 가진 ApiKey 목록 (반대쪽 관계)
+}
+
+model Site {
+  id String @id @default(uuid())
+  degree Degree
+  reason String[]
+  clientIp String
+  requestTime DateTime
+  responseTime DateTime @default(now())
+  requestObject Json // 1-a. 검색결과 객체
+}
+
+enum Degree {
+  safe
+  caution
+  danger
+}
+
+model ApiKey {
+  id String @id @default(uuid())
+  userId String      // User의 id를 저장하는 외래키
+  user User @relation(fields: [userId], references: [id])  // 관계 정의
+  createAt DateTime @default(now())
+}
