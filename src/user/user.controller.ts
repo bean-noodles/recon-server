@@ -17,12 +17,12 @@ export class UserController {
     return this.userService.login(data);
   }
 
-  @Get()
+  @Get('getAllUsers')
   async getAllUsers(): Promise<User[]> {
     return this.userService.getAllUsers();
   }
 
-  @Get(':id')
+  @Get('getUser/:id')
   async getUser(@Param('id') id: string): Promise<User | null> {
     return this.userService.getUser({ id });
   }

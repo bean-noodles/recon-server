@@ -16,7 +16,7 @@ datasource db {
         
 model User {
   id String @id @default(uuid())
-  token String
+  token String @unique
   createAt DateTime @default(now())
   apiKeys ApiKey[]  // User가 가진 ApiKey 목록 (반대쪽 관계)
 }
