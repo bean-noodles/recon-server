@@ -6,9 +6,10 @@ import { PrismaService } from './prisma/prisma.service';
 import { UserModule } from './user/user.module';
 import { UserController } from './user/user.controller';
 import { PrismaModule } from './prisma/prisma.module';
+import { ReconModule } from './recon/recon.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), PrismaModule, UserModule],
+  imports: [ConfigModule.forRoot(), PrismaModule, UserModule, ReconModule],
   controllers: [AppController, UserController],
   providers: [AppService, PrismaService],
 })
