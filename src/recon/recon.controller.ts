@@ -1,10 +1,14 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { Prisma } from 'src/generated/prisma/client';
+import { ReconService } from './recon.service';
 
 @Controller('recon')
 export class ReconController {
+  constructor(private readonly reconService: ReconService) {}
+
   @Post('site')
-  siteRecon(@Body() data: Prisma.SiteCreateInput) {
-    return data;
+  async siteRecon(
+    @Body() data: { title: string; url: string; description: string },
+  ) {
+    return this.reconService.siteRecon(data);
   }
 }

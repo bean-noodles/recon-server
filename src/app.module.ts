@@ -9,7 +9,12 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ReconModule } from './recon/recon.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), PrismaModule, UserModule, ReconModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
+    UserModule,
+    ReconModule,
+  ],
   controllers: [AppController, UserController],
   providers: [AppService, PrismaService],
 })
