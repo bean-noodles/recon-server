@@ -27,8 +27,3 @@ export type User = Prisma.UserModel
  * 
  */
 export type Site = Prisma.SiteModel
-/**
- * Model ApiKey
- * 
- */
-export type ApiKey = Prisma.ApiKeyModel

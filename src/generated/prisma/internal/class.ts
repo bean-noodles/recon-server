@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.3.0",
   "engineVersion": "9d6ad21cbbceab97458517b147a6a09ff43aa735",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id       String   @id @default(uuid())\n  token    String   @unique\n  createAt DateTime @default(now())\n  apiKeys  ApiKey[] // User가 가진 ApiKey 목록 (반대쪽 관계)\n}\n\nmodel Site {\n  id            String   @id @default(uuid())\n  degree        Degree\n  reason        String[]\n  clientIp      String\n  requestTime   DateTime\n  responseTime  DateTime @default(now())\n  requestObject Json // 1-a. 검색결과 객체\n}\n\nenum Degree {\n  safe\n  caution\n  danger\n}\n\nmodel ApiKey {\n  id       String   @id @default(uuid())\n  userId   String // User의 id를 저장하는 외래키\n  user     User     @relation(fields: [userId], references: [id]) // 관계 정의\n  createAt DateTime @default(now())\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id       String   @id @unique\n  order    Int      @default(autoincrement())\n  name     String\n  email    String\n  picture  String\n  createAt DateTime @default(now())\n}\n\nmodel Site {\n  id            String   @id @default(uuid())\n  degree        Degree\n  reason        String[]\n  clientIp      String\n  requestTime   DateTime\n  responseTime  DateTime @default(now())\n  requestObject Json // 1-a. 검색결과 객체\n}\n\nenum Degree {\n  safe\n  caution\n  danger\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"apiKeys\",\"kind\":\"object\",\"type\":\"ApiKey\",\"relationName\":\"ApiKeyToUser\"}],\"dbName\":null},\"Site\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"degree\",\"kind\":\"enum\",\"type\":\"Degree\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientIp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"requestTime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"responseTime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"requestObject\",\"kind\":\"scalar\",\"type\":\"Json\"}],\"dbName\":null},\"ApiKey\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ApiKeyToUser\"},{\"name\":\"createAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"picture\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Site\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"degree\",\"kind\":\"enum\",\"type\":\"Degree\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientIp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"requestTime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"responseTime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"requestObject\",\"kind\":\"scalar\",\"type\":\"Json\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -195,16 +195,6 @@ export interface PrismaClient<
     * ```
     */
   get site(): Prisma.SiteDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
-   * `prisma.apiKey`: Exposes CRUD operations for the **ApiKey** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ApiKeys
-    * const apiKeys = await prisma.apiKey.findMany()
-    * ```
-    */
-  get apiKey(): Prisma.ApiKeyDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
