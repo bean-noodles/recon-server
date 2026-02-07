@@ -6,7 +6,7 @@ async function bootstrap() {
 
   // CORS 활성화
   app.enableCors({
-    origin: 'https://front-test-psi-cyan.vercel.app',
+    origin: true, // Allow all origins for development (including chrome-extension://)
     credentials: true,
   });
 
