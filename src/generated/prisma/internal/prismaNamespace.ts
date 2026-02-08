@@ -611,7 +611,8 @@ export const SiteScalarFieldEnum = {
   clientIp: 'clientIp',
   requestTime: 'requestTime',
   responseTime: 'responseTime',
-  requestObject: 'requestObject'
+  requestObject: 'requestObject',
+  userId: 'userId'
 } as const
 
 export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
@@ -647,6 +648,14 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 

@@ -30,6 +30,7 @@ export type SiteMinAggregateOutputType = {
   clientIp: string | null
   requestTime: Date | null
   responseTime: Date | null
+  userId: string | null
 }
 
 export type SiteMaxAggregateOutputType = {
@@ -38,6 +39,7 @@ export type SiteMaxAggregateOutputType = {
   clientIp: string | null
   requestTime: Date | null
   responseTime: Date | null
+  userId: string | null
 }
 
 export type SiteCountAggregateOutputType = {
@@ -48,6 +50,7 @@ export type SiteCountAggregateOutputType = {
   requestTime: number
   responseTime: number
   requestObject: number
+  userId: number
   _all: number
 }
 
@@ -58,6 +61,7 @@ export type SiteMinAggregateInputType = {
   clientIp?: true
   requestTime?: true
   responseTime?: true
+  userId?: true
 }
 
 export type SiteMaxAggregateInputType = {
@@ -66,6 +70,7 @@ export type SiteMaxAggregateInputType = {
   clientIp?: true
   requestTime?: true
   responseTime?: true
+  userId?: true
 }
 
 export type SiteCountAggregateInputType = {
@@ -76,6 +81,7 @@ export type SiteCountAggregateInputType = {
   requestTime?: true
   responseTime?: true
   requestObject?: true
+  userId?: true
   _all?: true
 }
 
@@ -159,6 +165,7 @@ export type SiteGroupByOutputType = {
   requestTime: Date
   responseTime: Date
   requestObject: runtime.JsonValue
+  userId: string | null
   _count: SiteCountAggregateOutputType | null
   _min: SiteMinAggregateOutputType | null
   _max: SiteMaxAggregateOutputType | null
@@ -190,6 +197,8 @@ export type SiteWhereInput = {
   requestTime?: Prisma.DateTimeFilter<"Site"> | Date | string
   responseTime?: Prisma.DateTimeFilter<"Site"> | Date | string
   requestObject?: Prisma.JsonFilter<"Site">
+  userId?: Prisma.StringNullableFilter<"Site"> | string | null
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type SiteOrderByWithRelationInput = {
@@ -200,6 +209,8 @@ export type SiteOrderByWithRelationInput = {
   requestTime?: Prisma.SortOrder
   responseTime?: Prisma.SortOrder
   requestObject?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type SiteWhereUniqueInput = Prisma.AtLeast<{
@@ -213,6 +224,8 @@ export type SiteWhereUniqueInput = Prisma.AtLeast<{
   requestTime?: Prisma.DateTimeFilter<"Site"> | Date | string
   responseTime?: Prisma.DateTimeFilter<"Site"> | Date | string
   requestObject?: Prisma.JsonFilter<"Site">
+  userId?: Prisma.StringNullableFilter<"Site"> | string | null
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type SiteOrderByWithAggregationInput = {
@@ -223,6 +236,7 @@ export type SiteOrderByWithAggregationInput = {
   requestTime?: Prisma.SortOrder
   responseTime?: Prisma.SortOrder
   requestObject?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SiteCountOrderByAggregateInput
   _max?: Prisma.SiteMaxOrderByAggregateInput
   _min?: Prisma.SiteMinOrderByAggregateInput
@@ -239,6 +253,7 @@ export type SiteScalarWhereWithAggregatesInput = {
   requestTime?: Prisma.DateTimeWithAggregatesFilter<"Site"> | Date | string
   responseTime?: Prisma.DateTimeWithAggregatesFilter<"Site"> | Date | string
   requestObject?: Prisma.JsonWithAggregatesFilter<"Site">
+  userId?: Prisma.StringNullableWithAggregatesFilter<"Site"> | string | null
 }
 
 export type SiteCreateInput = {
@@ -249,6 +264,7 @@ export type SiteCreateInput = {
   requestTime: Date | string
   responseTime?: Date | string
   requestObject: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  user?: Prisma.UserCreateNestedOneWithoutSitesInput
 }
 
 export type SiteUncheckedCreateInput = {
@@ -259,6 +275,7 @@ export type SiteUncheckedCreateInput = {
   requestTime: Date | string
   responseTime?: Date | string
   requestObject: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  userId?: string | null
 }
 
 export type SiteUpdateInput = {
@@ -269,6 +286,7 @@ export type SiteUpdateInput = {
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requestObject?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  user?: Prisma.UserUpdateOneWithoutSitesNestedInput
 }
 
 export type SiteUncheckedUpdateInput = {
@@ -279,6 +297,7 @@ export type SiteUncheckedUpdateInput = {
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requestObject?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SiteCreateManyInput = {
@@ -289,6 +308,7 @@ export type SiteCreateManyInput = {
   requestTime: Date | string
   responseTime?: Date | string
   requestObject: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  userId?: string | null
 }
 
 export type SiteUpdateManyMutationInput = {
@@ -309,6 +329,17 @@ export type SiteUncheckedUpdateManyInput = {
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requestObject?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type SiteListRelationFilter = {
+  every?: Prisma.SiteWhereInput
+  some?: Prisma.SiteWhereInput
+  none?: Prisma.SiteWhereInput
+}
+
+export type SiteOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -327,6 +358,7 @@ export type SiteCountOrderByAggregateInput = {
   requestTime?: Prisma.SortOrder
   responseTime?: Prisma.SortOrder
   requestObject?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type SiteMaxOrderByAggregateInput = {
@@ -335,6 +367,7 @@ export type SiteMaxOrderByAggregateInput = {
   clientIp?: Prisma.SortOrder
   requestTime?: Prisma.SortOrder
   responseTime?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type SiteMinOrderByAggregateInput = {
@@ -343,6 +376,49 @@ export type SiteMinOrderByAggregateInput = {
   clientIp?: Prisma.SortOrder
   requestTime?: Prisma.SortOrder
   responseTime?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+}
+
+export type SiteCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.SiteCreateWithoutUserInput, Prisma.SiteUncheckedCreateWithoutUserInput> | Prisma.SiteCreateWithoutUserInput[] | Prisma.SiteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SiteCreateOrConnectWithoutUserInput | Prisma.SiteCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.SiteCreateManyUserInputEnvelope
+  connect?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+}
+
+export type SiteUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.SiteCreateWithoutUserInput, Prisma.SiteUncheckedCreateWithoutUserInput> | Prisma.SiteCreateWithoutUserInput[] | Prisma.SiteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SiteCreateOrConnectWithoutUserInput | Prisma.SiteCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.SiteCreateManyUserInputEnvelope
+  connect?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+}
+
+export type SiteUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.SiteCreateWithoutUserInput, Prisma.SiteUncheckedCreateWithoutUserInput> | Prisma.SiteCreateWithoutUserInput[] | Prisma.SiteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SiteCreateOrConnectWithoutUserInput | Prisma.SiteCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.SiteUpsertWithWhereUniqueWithoutUserInput | Prisma.SiteUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.SiteCreateManyUserInputEnvelope
+  set?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  disconnect?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  delete?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  connect?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  update?: Prisma.SiteUpdateWithWhereUniqueWithoutUserInput | Prisma.SiteUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.SiteUpdateManyWithWhereWithoutUserInput | Prisma.SiteUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.SiteScalarWhereInput | Prisma.SiteScalarWhereInput[]
+}
+
+export type SiteUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.SiteCreateWithoutUserInput, Prisma.SiteUncheckedCreateWithoutUserInput> | Prisma.SiteCreateWithoutUserInput[] | Prisma.SiteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SiteCreateOrConnectWithoutUserInput | Prisma.SiteCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.SiteUpsertWithWhereUniqueWithoutUserInput | Prisma.SiteUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.SiteCreateManyUserInputEnvelope
+  set?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  disconnect?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  delete?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  connect?: Prisma.SiteWhereUniqueInput | Prisma.SiteWhereUniqueInput[]
+  update?: Prisma.SiteUpdateWithWhereUniqueWithoutUserInput | Prisma.SiteUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.SiteUpdateManyWithWhereWithoutUserInput | Prisma.SiteUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.SiteScalarWhereInput | Prisma.SiteScalarWhereInput[]
 }
 
 export type SiteCreatereasonInput = {
@@ -358,6 +434,110 @@ export type SiteUpdatereasonInput = {
   push?: string | string[]
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type SiteCreateWithoutUserInput = {
+  id?: string
+  degree: $Enums.Degree
+  reason?: Prisma.SiteCreatereasonInput | string[]
+  clientIp: string
+  requestTime: Date | string
+  responseTime?: Date | string
+  requestObject: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type SiteUncheckedCreateWithoutUserInput = {
+  id?: string
+  degree: $Enums.Degree
+  reason?: Prisma.SiteCreatereasonInput | string[]
+  clientIp: string
+  requestTime: Date | string
+  responseTime?: Date | string
+  requestObject: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type SiteCreateOrConnectWithoutUserInput = {
+  where: Prisma.SiteWhereUniqueInput
+  create: Prisma.XOR<Prisma.SiteCreateWithoutUserInput, Prisma.SiteUncheckedCreateWithoutUserInput>
+}
+
+export type SiteCreateManyUserInputEnvelope = {
+  data: Prisma.SiteCreateManyUserInput | Prisma.SiteCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type SiteUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.SiteWhereUniqueInput
+  update: Prisma.XOR<Prisma.SiteUpdateWithoutUserInput, Prisma.SiteUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.SiteCreateWithoutUserInput, Prisma.SiteUncheckedCreateWithoutUserInput>
+}
+
+export type SiteUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.SiteWhereUniqueInput
+  data: Prisma.XOR<Prisma.SiteUpdateWithoutUserInput, Prisma.SiteUncheckedUpdateWithoutUserInput>
+}
+
+export type SiteUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.SiteScalarWhereInput
+  data: Prisma.XOR<Prisma.SiteUpdateManyMutationInput, Prisma.SiteUncheckedUpdateManyWithoutUserInput>
+}
+
+export type SiteScalarWhereInput = {
+  AND?: Prisma.SiteScalarWhereInput | Prisma.SiteScalarWhereInput[]
+  OR?: Prisma.SiteScalarWhereInput[]
+  NOT?: Prisma.SiteScalarWhereInput | Prisma.SiteScalarWhereInput[]
+  id?: Prisma.StringFilter<"Site"> | string
+  degree?: Prisma.EnumDegreeFilter<"Site"> | $Enums.Degree
+  reason?: Prisma.StringNullableListFilter<"Site">
+  clientIp?: Prisma.StringFilter<"Site"> | string
+  requestTime?: Prisma.DateTimeFilter<"Site"> | Date | string
+  responseTime?: Prisma.DateTimeFilter<"Site"> | Date | string
+  requestObject?: Prisma.JsonFilter<"Site">
+  userId?: Prisma.StringNullableFilter<"Site"> | string | null
+}
+
+export type SiteCreateManyUserInput = {
+  id?: string
+  degree: $Enums.Degree
+  reason?: Prisma.SiteCreatereasonInput | string[]
+  clientIp: string
+  requestTime: Date | string
+  responseTime?: Date | string
+  requestObject: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type SiteUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
+  reason?: Prisma.SiteUpdatereasonInput | string[]
+  clientIp?: Prisma.StringFieldUpdateOperationsInput | string
+  requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requestObject?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type SiteUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
+  reason?: Prisma.SiteUpdatereasonInput | string[]
+  clientIp?: Prisma.StringFieldUpdateOperationsInput | string
+  requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requestObject?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type SiteUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
+  reason?: Prisma.SiteUpdatereasonInput | string[]
+  clientIp?: Prisma.StringFieldUpdateOperationsInput | string
+  requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requestObject?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
 
 
 export type SiteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -368,6 +548,8 @@ export type SiteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   requestTime?: boolean
   responseTime?: boolean
   requestObject?: boolean
+  userId?: boolean
+  user?: boolean | Prisma.Site$userArgs<ExtArgs>
 }, ExtArgs["result"]["site"]>
 
 export type SiteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -378,6 +560,8 @@ export type SiteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   requestTime?: boolean
   responseTime?: boolean
   requestObject?: boolean
+  userId?: boolean
+  user?: boolean | Prisma.Site$userArgs<ExtArgs>
 }, ExtArgs["result"]["site"]>
 
 export type SiteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -388,6 +572,8 @@ export type SiteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   requestTime?: boolean
   responseTime?: boolean
   requestObject?: boolean
+  userId?: boolean
+  user?: boolean | Prisma.Site$userArgs<ExtArgs>
 }, ExtArgs["result"]["site"]>
 
 export type SiteSelectScalar = {
@@ -398,13 +584,25 @@ export type SiteSelectScalar = {
   requestTime?: boolean
   responseTime?: boolean
   requestObject?: boolean
+  userId?: boolean
 }
 
-export type SiteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "degree" | "reason" | "clientIp" | "requestTime" | "responseTime" | "requestObject", ExtArgs["result"]["site"]>
+export type SiteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "degree" | "reason" | "clientIp" | "requestTime" | "responseTime" | "requestObject" | "userId", ExtArgs["result"]["site"]>
+export type SiteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Site$userArgs<ExtArgs>
+}
+export type SiteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Site$userArgs<ExtArgs>
+}
+export type SiteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Site$userArgs<ExtArgs>
+}
 
 export type $SitePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Site"
-  objects: {}
+  objects: {
+    user: Prisma.$UserPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     degree: $Enums.Degree
@@ -413,6 +611,7 @@ export type $SitePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     requestTime: Date
     responseTime: Date
     requestObject: runtime.JsonValue
+    userId: string | null
   }, ExtArgs["result"]["site"]>
   composites: {}
 }
@@ -807,6 +1006,7 @@ readonly fields: SiteFieldRefs;
  */
 export interface Prisma__SiteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.Site$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Site$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -843,6 +1043,7 @@ export interface SiteFieldRefs {
   readonly requestTime: Prisma.FieldRef<"Site", 'DateTime'>
   readonly responseTime: Prisma.FieldRef<"Site", 'DateTime'>
   readonly requestObject: Prisma.FieldRef<"Site", 'Json'>
+  readonly userId: Prisma.FieldRef<"Site", 'String'>
 }
     
 
@@ -859,6 +1060,10 @@ export type SiteFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Site
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
   /**
    * Filter, which Site to fetch.
    */
@@ -878,6 +1083,10 @@ export type SiteFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  /**
    * Filter, which Site to fetch.
    */
   where: Prisma.SiteWhereUniqueInput
@@ -895,6 +1104,10 @@ export type SiteFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Site
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
   /**
    * Filter, which Site to fetch.
    */
@@ -944,6 +1157,10 @@ export type SiteFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  /**
    * Filter, which Site to fetch.
    */
   where?: Prisma.SiteWhereInput
@@ -992,6 +1209,10 @@ export type SiteFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  /**
    * Filter, which Sites to fetch.
    */
   where?: Prisma.SiteWhereInput
@@ -1035,6 +1256,10 @@ export type SiteCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  /**
    * The data needed to create a Site.
    */
   data: Prisma.XOR<Prisma.SiteCreateInput, Prisma.SiteUncheckedCreateInput>
@@ -1068,6 +1293,10 @@ export type SiteCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.SiteCreateManyInput | Prisma.SiteCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1082,6 +1311,10 @@ export type SiteUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Site
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
   /**
    * The data needed to update a Site.
    */
@@ -1134,6 +1367,10 @@ export type SiteUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Sites to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1148,6 +1385,10 @@ export type SiteUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Site
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
   /**
    * The filter to search for the Site to update in case it exists.
    */
@@ -1175,6 +1416,10 @@ export type SiteDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
+  /**
    * Filter which Site to delete.
    */
   where: Prisma.SiteWhereUniqueInput
@@ -1195,6 +1440,25 @@ export type SiteDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Site.user
+ */
+export type Site$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
  * Site without action
  */
 export type SiteDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1206,4 +1470,8 @@ export type SiteDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Site
    */
   omit?: Prisma.SiteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteInclude<ExtArgs> | null
 }

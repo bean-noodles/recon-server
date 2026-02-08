@@ -7,7 +7,8 @@ export class ReconController {
 
   @Post('site')
   async siteRecon(
-    @Body() data: { title: string; url: string; description: string },
+    @Body()
+    data: { title: string; url: string; description: string; userId?: string },
     @Ip() clientIp: string,
   ) {
     return this.reconService.siteRecon(data, clientIp);

@@ -26,6 +26,7 @@ export class ReconService {
       title: string;
       url: string;
       description: string;
+      userId?: string;
     },
     clientIp: string,
   ): Promise<{ degree: string; reason: string[] }> {
@@ -93,6 +94,7 @@ ${JSON.stringify(data, null, 2)}
           clientIp: clientIp,
           requestTime: new Date(),
           requestObject: JSON.stringify(data),
+          userId: data.userId,
         },
       });
 

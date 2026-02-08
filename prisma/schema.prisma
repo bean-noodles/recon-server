@@ -21,6 +21,7 @@ model User {
   email    String   @unique
   picture  String
   createAt DateTime @default(now())
+  sites    Site[]
 }
 
 model Site {
@@ -31,6 +32,9 @@ model Site {
   requestTime DateTime
   responseTime DateTime @default(now())
   requestObject Json // 1-a. 검색결과 객체
+  
+  userId String?
+  user User? @relation(fields: [userId], references: [id])
 }
 
 enum Degree {
