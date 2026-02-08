@@ -21,11 +21,14 @@ export class ReconService {
     });
   }
 
-  async siteRecon(data: {
-    title: string;
-    url: string;
-    description: string;
-  }): Promise<{ degree: string; reason: string[] }> {
+  async siteRecon(
+    data: {
+      title: string;
+      url: string;
+      description: string;
+    },
+    clientIp: string,
+  ): Promise<{ degree: string; reason: string[] }> {
     const prompt = `
 당신은 웹사이트 보안 분석 전문가입니다. 주어진 사이트 정보를 분석하여 안전도를 평가해주세요.
 
@@ -87,7 +90,7 @@ ${JSON.stringify(data, null, 2)}
         data: {
           degree: result.degree,
           reason: result.reason,
-          clientIp: '1.1.1.1',
+          clientIp: clientIp,
           requestTime: new Date(),
           requestObject: JSON.stringify(data),
         },
