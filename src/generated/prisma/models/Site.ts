@@ -27,6 +27,7 @@ export type AggregateSite = {
 export type SiteMinAggregateOutputType = {
   id: string | null
   degree: $Enums.Degree | null
+  reason: string | null
   clientIp: string | null
   requestTime: Date | null
   responseTime: Date | null
@@ -36,6 +37,7 @@ export type SiteMinAggregateOutputType = {
 export type SiteMaxAggregateOutputType = {
   id: string | null
   degree: $Enums.Degree | null
+  reason: string | null
   clientIp: string | null
   requestTime: Date | null
   responseTime: Date | null
@@ -58,6 +60,7 @@ export type SiteCountAggregateOutputType = {
 export type SiteMinAggregateInputType = {
   id?: true
   degree?: true
+  reason?: true
   clientIp?: true
   requestTime?: true
   responseTime?: true
@@ -67,6 +70,7 @@ export type SiteMinAggregateInputType = {
 export type SiteMaxAggregateInputType = {
   id?: true
   degree?: true
+  reason?: true
   clientIp?: true
   requestTime?: true
   responseTime?: true
@@ -160,7 +164,7 @@ export type SiteGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type SiteGroupByOutputType = {
   id: string
   degree: $Enums.Degree
-  reason: string[]
+  reason: string
   clientIp: string
   requestTime: Date
   responseTime: Date
@@ -192,7 +196,7 @@ export type SiteWhereInput = {
   NOT?: Prisma.SiteWhereInput | Prisma.SiteWhereInput[]
   id?: Prisma.StringFilter<"Site"> | string
   degree?: Prisma.EnumDegreeFilter<"Site"> | $Enums.Degree
-  reason?: Prisma.StringNullableListFilter<"Site">
+  reason?: Prisma.StringFilter<"Site"> | string
   clientIp?: Prisma.StringFilter<"Site"> | string
   requestTime?: Prisma.DateTimeFilter<"Site"> | Date | string
   responseTime?: Prisma.DateTimeFilter<"Site"> | Date | string
@@ -219,7 +223,7 @@ export type SiteWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SiteWhereInput[]
   NOT?: Prisma.SiteWhereInput | Prisma.SiteWhereInput[]
   degree?: Prisma.EnumDegreeFilter<"Site"> | $Enums.Degree
-  reason?: Prisma.StringNullableListFilter<"Site">
+  reason?: Prisma.StringFilter<"Site"> | string
   clientIp?: Prisma.StringFilter<"Site"> | string
   requestTime?: Prisma.DateTimeFilter<"Site"> | Date | string
   responseTime?: Prisma.DateTimeFilter<"Site"> | Date | string
@@ -248,7 +252,7 @@ export type SiteScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SiteScalarWhereWithAggregatesInput | Prisma.SiteScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Site"> | string
   degree?: Prisma.EnumDegreeWithAggregatesFilter<"Site"> | $Enums.Degree
-  reason?: Prisma.StringNullableListFilter<"Site">
+  reason?: Prisma.StringWithAggregatesFilter<"Site"> | string
   clientIp?: Prisma.StringWithAggregatesFilter<"Site"> | string
   requestTime?: Prisma.DateTimeWithAggregatesFilter<"Site"> | Date | string
   responseTime?: Prisma.DateTimeWithAggregatesFilter<"Site"> | Date | string
@@ -259,7 +263,7 @@ export type SiteScalarWhereWithAggregatesInput = {
 export type SiteCreateInput = {
   id?: string
   degree: $Enums.Degree
-  reason?: Prisma.SiteCreatereasonInput | string[]
+  reason: string
   clientIp: string
   requestTime: Date | string
   responseTime?: Date | string
@@ -270,7 +274,7 @@ export type SiteCreateInput = {
 export type SiteUncheckedCreateInput = {
   id?: string
   degree: $Enums.Degree
-  reason?: Prisma.SiteCreatereasonInput | string[]
+  reason: string
   clientIp: string
   requestTime: Date | string
   responseTime?: Date | string
@@ -281,7 +285,7 @@ export type SiteUncheckedCreateInput = {
 export type SiteUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
-  reason?: Prisma.SiteUpdatereasonInput | string[]
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
   clientIp?: Prisma.StringFieldUpdateOperationsInput | string
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -292,7 +296,7 @@ export type SiteUpdateInput = {
 export type SiteUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
-  reason?: Prisma.SiteUpdatereasonInput | string[]
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
   clientIp?: Prisma.StringFieldUpdateOperationsInput | string
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -303,7 +307,7 @@ export type SiteUncheckedUpdateInput = {
 export type SiteCreateManyInput = {
   id?: string
   degree: $Enums.Degree
-  reason?: Prisma.SiteCreatereasonInput | string[]
+  reason: string
   clientIp: string
   requestTime: Date | string
   responseTime?: Date | string
@@ -314,7 +318,7 @@ export type SiteCreateManyInput = {
 export type SiteUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
-  reason?: Prisma.SiteUpdatereasonInput | string[]
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
   clientIp?: Prisma.StringFieldUpdateOperationsInput | string
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -324,7 +328,7 @@ export type SiteUpdateManyMutationInput = {
 export type SiteUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
-  reason?: Prisma.SiteUpdatereasonInput | string[]
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
   clientIp?: Prisma.StringFieldUpdateOperationsInput | string
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -342,14 +346,6 @@ export type SiteOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StringNullableListFilter<$PrismaModel = never> = {
-  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
-  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
-  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
-}
-
 export type SiteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   degree?: Prisma.SortOrder
@@ -364,6 +360,7 @@ export type SiteCountOrderByAggregateInput = {
 export type SiteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   degree?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   clientIp?: Prisma.SortOrder
   requestTime?: Prisma.SortOrder
   responseTime?: Prisma.SortOrder
@@ -373,6 +370,7 @@ export type SiteMaxOrderByAggregateInput = {
 export type SiteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   degree?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   clientIp?: Prisma.SortOrder
   requestTime?: Prisma.SortOrder
   responseTime?: Prisma.SortOrder
@@ -421,17 +419,8 @@ export type SiteUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.SiteScalarWhereInput | Prisma.SiteScalarWhereInput[]
 }
 
-export type SiteCreatereasonInput = {
-  set: string[]
-}
-
 export type EnumDegreeFieldUpdateOperationsInput = {
   set?: $Enums.Degree
-}
-
-export type SiteUpdatereasonInput = {
-  set?: string[]
-  push?: string | string[]
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
@@ -441,7 +430,7 @@ export type NullableStringFieldUpdateOperationsInput = {
 export type SiteCreateWithoutUserInput = {
   id?: string
   degree: $Enums.Degree
-  reason?: Prisma.SiteCreatereasonInput | string[]
+  reason: string
   clientIp: string
   requestTime: Date | string
   responseTime?: Date | string
@@ -451,7 +440,7 @@ export type SiteCreateWithoutUserInput = {
 export type SiteUncheckedCreateWithoutUserInput = {
   id?: string
   degree: $Enums.Degree
-  reason?: Prisma.SiteCreatereasonInput | string[]
+  reason: string
   clientIp: string
   requestTime: Date | string
   responseTime?: Date | string
@@ -490,7 +479,7 @@ export type SiteScalarWhereInput = {
   NOT?: Prisma.SiteScalarWhereInput | Prisma.SiteScalarWhereInput[]
   id?: Prisma.StringFilter<"Site"> | string
   degree?: Prisma.EnumDegreeFilter<"Site"> | $Enums.Degree
-  reason?: Prisma.StringNullableListFilter<"Site">
+  reason?: Prisma.StringFilter<"Site"> | string
   clientIp?: Prisma.StringFilter<"Site"> | string
   requestTime?: Prisma.DateTimeFilter<"Site"> | Date | string
   responseTime?: Prisma.DateTimeFilter<"Site"> | Date | string
@@ -501,7 +490,7 @@ export type SiteScalarWhereInput = {
 export type SiteCreateManyUserInput = {
   id?: string
   degree: $Enums.Degree
-  reason?: Prisma.SiteCreatereasonInput | string[]
+  reason: string
   clientIp: string
   requestTime: Date | string
   responseTime?: Date | string
@@ -511,7 +500,7 @@ export type SiteCreateManyUserInput = {
 export type SiteUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
-  reason?: Prisma.SiteUpdatereasonInput | string[]
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
   clientIp?: Prisma.StringFieldUpdateOperationsInput | string
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -521,7 +510,7 @@ export type SiteUpdateWithoutUserInput = {
 export type SiteUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
-  reason?: Prisma.SiteUpdatereasonInput | string[]
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
   clientIp?: Prisma.StringFieldUpdateOperationsInput | string
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -531,7 +520,7 @@ export type SiteUncheckedUpdateWithoutUserInput = {
 export type SiteUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   degree?: Prisma.EnumDegreeFieldUpdateOperationsInput | $Enums.Degree
-  reason?: Prisma.SiteUpdatereasonInput | string[]
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
   clientIp?: Prisma.StringFieldUpdateOperationsInput | string
   requestTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responseTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -606,7 +595,7 @@ export type $SitePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     degree: $Enums.Degree
-    reason: string[]
+    reason: string
     clientIp: string
     requestTime: Date
     responseTime: Date
@@ -1038,7 +1027,7 @@ export interface Prisma__SiteClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface SiteFieldRefs {
   readonly id: Prisma.FieldRef<"Site", 'String'>
   readonly degree: Prisma.FieldRef<"Site", 'Degree'>
-  readonly reason: Prisma.FieldRef<"Site", 'String[]'>
+  readonly reason: Prisma.FieldRef<"Site", 'String'>
   readonly clientIp: Prisma.FieldRef<"Site", 'String'>
   readonly requestTime: Prisma.FieldRef<"Site", 'DateTime'>
   readonly responseTime: Prisma.FieldRef<"Site", 'DateTime'>
