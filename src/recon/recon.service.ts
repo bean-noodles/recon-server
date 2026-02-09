@@ -23,9 +23,7 @@ export class ReconService {
 
   async siteRecon(
     data: {
-      title: string;
-      url: string;
-      description: string;
+      webData: { title: string; url: string; description: string };
       userId?: string;
     },
     clientIp: string,
@@ -34,7 +32,7 @@ export class ReconService {
 당신은 웹사이트 보안 분석 전문가입니다. 주어진 사이트 정보를 분석하여 안전도를 평가해주세요.
 
 분석할 사이트 정보:
-${JSON.stringify(data, null, 2)}
+${JSON.stringify(data.webData, null, 2)}
 
 다음 형식으로만 응답해주세요 (JSON):
 {
@@ -47,6 +45,8 @@ ${JSON.stringify(data, null, 2)}
 - danger: 위험한 사이트
 
 반드시 유효한 JSON 형식으로만 응답하세요.
+
+
 `;
 
     try {
@@ -71,6 +71,7 @@ ${JSON.stringify(data, null, 2)}
       if (!responseContent) {
         throw new Error('GPT 응답이 비어있습니다.');
       }
+      console.log(JSON.stringify(data, null, 2));
 
       const parsed: unknown = JSON.parse(responseContent);
 
@@ -93,7 +94,7 @@ ${JSON.stringify(data, null, 2)}
           reason: result.reason,
           clientIp: clientIp,
           requestTime: new Date(),
-          requestObject: JSON.stringify(data),
+          requestObject: JSON.stringify(data.webData),
           userId: data.userId,
         },
       });
